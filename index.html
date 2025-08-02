@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9chan - The World's Best Imageboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "nanoid": "https://cdn.jsdelivr.net/npm/nanoid@5.0.3/nanoid.js"
+            }
+        }
+    </script>
+    <!-- WebsimSocket CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@websim-prod/client@latest/dist/websim-socket.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>9chan</h1>
+        <span id="user-display" class="user-info"></span>
+        <button id="run-tests" class="test-button">Run Tests</button>
+        <nav>
+            <a href="#random" id="nav-random" class="board-link">[/b/ - Random]</a>
+            <a href="#rules" id="nav-rules" class="board-link">[Rules]</a>
+            <a href="#g" id="nav-g" class="board-link">[/g/ - Technology]</a>
+            <a href="#v" id="nav-v" class="board-link">[/v/ - Video Games]</a>
+            <a href="#biz" id="nav-biz" class="board-link">[/biz/ - Business & Finance]</a>
+            <a href="#tv" class="board-link">[/tv/ - Television & Film]</a>
+            <a href="#mu" class="board-link">[/mu/ - Music]</a>
+            <a href="#pol" class="board-link">[/pol/ - Politically Incorrect]</a>
+            <a href="#an" class="board-link">[/an/ - Animals & Nature]</a>
+            <a href="#jp" id="nav-jp" class="board-link">[/jp/ - Otaku Culture]</a>
+            <!-- new boards -->
+            <a href="#art"   id="nav-art"   class="board-link">[/art/ - Art]</a>
+            <a href="#lgbtq" id="nav-lgbtq" class="board-link">[/lgbtq/ - LGBTQ+]</a>
+            <a href="#sci"   id="nav-sci"   class="board-link">[/sci/ - Science]</a>
+            <a href="#sp"    id="nav-sp"    class="board-link">[/sp/ - Sports]</a>
+        </nav>
+    </header>
+
+    <main id="board-content">
+        <!-- Threads will be loaded here -->
+        <p class="loading-message">Loading threads...</p>
+    </main>
+
+    <section id="new-thread-section">
+        <h2>Post a New Thread</h2>
+        <form id="new-thread-form">
+            <!-- Username is automatically handled by Websim from GitHub -->
+            <label for="thread-subject">Subject:</label>
+            <input type="text" id="thread-subject" maxlength="100">
+
+            <label for="thread-comment">Comment:</label>
+            <textarea id="thread-comment" rows="6" required></textarea>
+
+            <label for="thread-image-file">Image Upload:</label>
+            <input type="file" id="thread-image-file" accept="image/*">
+            <span id="thread-file-name" class="file-name-display"></span>
+            
+            <label for="thread-image-url">Image URL:</label>
+            <input type="url" id="thread-image-url" placeholder="Optional image URL (ignored if file uploaded)">
+
+            <label class="checkbox-container">
+                <input type="checkbox" id="disable-replies"> Disable Replies
+            </label>
+
+            <button type="submit">Post</button>
+        </form>
+    </section>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

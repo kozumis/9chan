@@ -1,0 +1,370 @@
+body {
+    font-family: monospace;
+    background-color: #EEF2FF; /* Light blue, common on imageboards */
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #DDEEFF; /* Slightly darker blue */
+    padding: 10px 20px;
+    border-bottom: 1px solid #C0C0D0;
+    text-align: center;
+    position: relative; /* Needed for absolute positioning of user-info */
+}
+
+header h1 {
+    margin: 0;
+    color: #000;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+.board-link {
+    color: #000;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.board-link:hover {
+    text-decoration: underline;
+}
+
+.board-link.active-board {
+    text-decoration: underline;
+    color: #4CAF50; /* A different color to highlight */
+}
+
+.user-info {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 0.9em;
+    color: #555;
+    font-weight: bold;
+    display: flex; /* To align avatar and text */
+    align-items: center;
+    gap: 5px; /* Space between avatar and text */
+}
+
+.user-info .user-avatar {
+    width: 24px; /* Small avatar size */
+    height: 24px;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+}
+
+.connect-github-button {
+    background-color: #333; /* Dark gray for GitHub button */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-family: sans-serif; /* A bit more modern font for the button */
+}
+
+.connect-github-button:hover {
+    background-color: #555;
+}
+
+main {
+    padding: 20px;
+}
+
+.thread {
+    background-color: #D6DAF0; /* Another light blue for threads */
+    border: 1px solid #C0C0D0;
+    padding: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.post-info {
+    font-size: 0.9em;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.post-info .post-name {
+    color: #117743; /* Green for name */
+    font-weight: bold;
+}
+
+.post-info .post-id {
+    color: #000;
+    font-weight: bold;
+}
+
+.post-subject {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.post-image {
+    max-width: 200px;
+    max-height: 200px;
+    height: auto;
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.post-comment {
+    white-space: pre-wrap; /* Preserve formatting, allow wrapping */
+    word-wrap: break-word;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.thread::after { /* Clearfix for floated images */
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.replies-container {
+    margin-top: 20px;
+    padding-left: 20px;
+    border-left: 1px dashed #C0C0D0;
+}
+
+.reply {
+    background-color: #C0C0D0; /* Slightly different background for replies */
+    padding: 8px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.reply .post-info {
+    margin-bottom: 3px;
+}
+
+.reply .post-image {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+/* New Thread Form */
+#new-thread-section {
+    background-color: #DDEEFF;
+    padding: 20px;
+    border-top: 1px solid #C0C0D0;
+    margin-top: 20px;
+}
+
+#new-thread-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* New: Checkbox container for better alignment */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Consistent spacing */
+    font-weight: normal; /* Override label bold for checkbox text */
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: auto; /* Don't apply full width to checkbox */
+    margin-right: 8px; /* Space between checkbox and text */
+    margin-bottom: 0; /* No bottom margin for checkbox */
+}
+
+#new-thread-form input[type="text"],
+#new-thread-form input[type="url"],
+#new-thread-form textarea,
+#new-thread-form input[type="file"] { /* Apply to file input as well */
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    font-family: monospace;
+    font-size: 1em;
+}
+
+#new-thread-form button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#new-thread-form button:hover {
+    background-color: #45a049;
+}
+
+/* New: Styling for the reply section and its toggle button */
+.reply-section {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px dashed #C0C0D0;
+}
+
+.toggle-reply-form-button {
+    background-color: #6a5acd; /* Blue-violet, same as reply button */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: block; /* Make it a block element to take full width or align better */
+    margin-bottom: 10px; /* Space below button */
+}
+
+.toggle-reply-form-button:hover {
+    background-color: #5d4dab;
+}
+
+.reply-form-container {
+    /* This div holds the reply form and will be toggled */
+    padding: 10px;
+    border: 1px solid #B0B0C0;
+    background-color: #E0E0E0; /* Slightly different background for the toggled form */
+    margin-top: 10px;
+}
+
+.replies-disabled-message {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Reply Form */
+.reply-form {
+    margin-top: 0; /* Remove top margin as it's now inside a container */
+    padding-top: 0; /* Remove top padding as it's now inside a container */
+    border-top: none; /* Remove border as container has one */
+}
+
+.reply-form label {
+    display: block; /* Make them block to stack nicely */
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.reply-form input[type="text"],
+.reply-form input[type="url"],
+.reply-form textarea,
+.reply-form input[type="file"] { /* Apply to reply form file input */
+    width: calc(100% - 22px); /* Adjust width */
+    max-width: 400px; /* Limit reply form input width */
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    font-family: monospace;
+    font-size: 0.9em;
+    display: block; /* Make them block to stack nicely */
+}
+
+.reply-form textarea {
+    min-height: 60px; /* Smaller textarea for replies */
+    max-height: 120px;
+}
+
+.reply-form button {
+    background-color: #6a5acd; /* Blue-violet */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.reply-form button:hover {
+    background-color: #5d4dab;
+}
+
+.loading-message {
+    text-align: center;
+    font-style: italic;
+    color: #555;
+}
+
+/* New: Rules container styling */
+.rules-container {
+    background-color: #D6DAF0;
+    border: 1px solid #C0C0D0;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.rules-container h2 {
+    color: #117743; /* Green like names */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rules-container ol {
+    list-style: decimal;
+    padding-left: 25px;
+}
+
+.rules-container li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Moderator delete button styling */
+.delete-button {
+    background-color: #dc3545; /* Red for delete */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 10px;
+    float: right; /* Position to the right */
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.post .delete-button {
+    margin-top: 5px; /* Adjust vertical position for thread delete button */
+}
+
+.reply .delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.75em;
+    padding: 3px 8px;
+}
+
+/* New: Styling for file name display */
+.file-name-display {
+    display: block;
+    margin-top: -10px; /* Pull it up a bit closer to the input */
+    margin-bottom: 15px;
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* Test button styling */
+.test-button {
+    background-color: #ff9800; /* Orange */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85em;
+    position: absolute;
+    top: 10px;
+    right: 150px; /* Adjust to sit left of user-info */
+}
+.test-button:hover {
+    background-color: #e68900;
+}
